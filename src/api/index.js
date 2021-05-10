@@ -6,8 +6,12 @@ const config = {
 
 // 하이 오더 컴포넌트 구현 -> fetchList(pageName) 하나의 함수로
 // 아래의 fetchNewsList(), fetchJobsList(), fetchAskList() 중복 공통 처리
-function fetchList(pageName) {
-  return axios.get(`${config.baseUrl}${pageName}/1.json`);
+async function fetchList(pageName) {
+  try {
+    return await axios.get(`${config.baseUrl}${pageName}/1.json`);
+  } catch (error) {
+    console.error( error );
+  }
 }
 
 function fetchNewsList(){

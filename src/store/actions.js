@@ -37,33 +37,47 @@ export default {
   //     });
   // },
 
-  FETCH_USER({ commit }, name) {
-    return fetchUserInfo(name)
-      .then((response) => {
-        console.log(response.data);
-        commit("SET_USER", response.data);
-        return response;
-      })
-      .catch();
+  // FETCH_USER({ commit }, name) {
+  //   return fetchUserInfo(name)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       commit("SET_USER", response.data);
+  //       return response;
+  //     })
+  //     .catch();
+  // },
+
+  // async & await 사용
+  async FETCH_USER({commit}, name) {
+    try {
+      const response = await fetchUserInfo(name);
+      console.log( response );
+      commit("SET_USER", response.data);
+      return response;
+
+    } catch (error) {
+      console.log( error );
+    }
   },
 
-  FETCH_ITEM({ commit }, id) {
-    return fetchItem(id)
-      .then(({ data }) => {
-        commit("SET_ITEM", data);
-        return data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+
+  async FETCH_ITEM({ commit }, id) {
+    // const response.data = await fetchItem(id)
+    // data destructuring
+    const { data } = await fetchItem(id)
+
+    try {
+      commit("SET_ITEM", data);
+      return data;
+
+    } catch (error) {
+      console.error(error); 
+    }
   },
 
-  FETCH_LIST({ commit }, pageName) {
-    return fetchList(pageName)
-      .then(({ data }) => {
-        commit("SET_LIST", data);
-        return data;
-      })
-      .catch((error) => console.log(error));
+  async FETCH_LIST({ commit }, pageName) {
+    const response = await fetchList(pageName); // 호출되는 api단에서 try/catch 사용
+    commit("SET_LIST", response.data);
+    return response;
   },
 };
