@@ -16,10 +16,27 @@
 
 <script>
 import ListItem from '../components/ListItem.vue';
+import ListMixin from '../mixins/ListMixin.js';
+// import Bus from '../utils/bus.js';
 
 export default {
   components: {
     ListItem
+  },
+  mixins: [ListMixin],
+  created() {
+    // Bus.$emit('start:spinner');
+
+    // setTimeout( ()=>{
+    //   this.$store.dispatch('FETCH_JOBS')
+    //     .then(() => {
+    //       console.log( 'fetched' );
+    //       Bus.$emit('end:spinner');
+    //     })
+    //     .catch((error) => {
+    //       console.log( error );
+    //     });
+    // }, 1000 );
   }
 }
 </script>

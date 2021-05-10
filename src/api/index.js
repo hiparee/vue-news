@@ -4,6 +4,12 @@ const config = {
   baseUrl: "https://api.hnpwa.com/v0/",
 };
 
+// 하이 오더 컴포넌트 구현 -> fetchList(pageName) 하나의 함수로
+// 아래의 fetchNewsList(), fetchJobsList(), fetchAskList() 중복 공통 처리
+function fetchList(pageName) {
+  return axios.get(`${config.baseUrl}${pageName}/1.json`);
+}
+
 function fetchNewsList(){
   return axios.get(`${config.baseUrl}news/1.json`);
 }
@@ -24,4 +30,5 @@ function fetchItem( id ) {
   return axios.get(`${config.baseUrl}item/${id}.json`);
 }
 
-export { fetchNewsList, fetchJobsList, fetchAskList, fetchUserInfo, fetchItem };
+
+export { fetchNewsList, fetchJobsList, fetchAskList, fetchUserInfo, fetchItem, fetchList };
