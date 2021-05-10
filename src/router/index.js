@@ -9,33 +9,36 @@ import ItemView from "../views/ItemView.vue";
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
-         mode: "history",
-         routes: [
-           {
-             path: "/",
-             redirect: "/news",
-           },
-           {
-             // path : url 주소
-             path: "/news",
-             // component: url 주소로 갔을 때 표시될 컴포넌트.
-             component: NewsView,
-           },
-           {
-             path: "/ask",
-             component: AskView,
-           },
-           {
-             path: "/jobs",
-             component: JobsView,
-           },
-           {
-             path: "/user/:id", // :id 이렇게 받게되면 url이 /user/test 인경우 this.$route.params.id의 값을 찍어보면 test가 된다
-             component: UserView,
-           },
-           {
-             path: "/item/:id",
-             component: ItemView,
-           },
-         ],
-       });
+  mode: "history",
+  routes: [
+    {
+      path: "/",
+      redirect: "/news",
+    },
+    {
+      // path : url 주소
+      path: "/news",
+      name: "news",
+      // component: url 주소로 갔을 때 표시될 컴포넌트.
+      component: NewsView,
+    },
+    {
+      path: "/ask",
+      name: "ask",
+      component: AskView,
+    },
+    {
+      path: "/jobs",
+      name: "jobs",
+      component: JobsView,
+    },
+    {
+      path: "/user/:id", // :id 이렇게 받게되면 url이 /user/test 인경우 this.$route.params.id의 값을 찍어보면 test가 된다
+      component: UserView,
+    },
+    {
+      path: "/item/:id",
+      component: ItemView,
+    },
+  ],
+});
